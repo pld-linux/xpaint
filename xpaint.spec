@@ -7,7 +7,7 @@ Summary(pt_BR):	Programa de desenho para X
 Summary(tr):	X altýnda boyama programý
 Name:		xpaint
 Version:	2.6.2
-Release:	5
+Release:	6
 License:	MIT
 Group:		X11/Applications/Graphics
 Source0:	http://www.image.dk/~torsten/xpaint/%{name}-%{version}.tar.gz
@@ -79,14 +79,14 @@ xmkmf
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_applnkdir}/Graphics,%{_pixmapsdir}}
+install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}}
 
 %{__make} install install.man \
 	DESTDIR=$RPM_BUILD_ROOT \
 	MANDIR=%{_mandir}/man1 \
 	BINDIR=%{_bindir}
 
-install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Graphics
+install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
 
 %clean
@@ -98,5 +98,5 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/xpaint
 %{_appdefsdir}/XPaint
 %{_mandir}/man1/*
-%{_applnkdir}/Graphics/xpaint.desktop
+%{_desktopdir}/*
 %{_pixmapsdir}/*
