@@ -5,7 +5,7 @@ Summary(pl):	Program do rysowania pod X Window
 Summary(tr):	X altýnda boyama programý
 Name:		xpaint
 Version:	2.5.7
-Release:	1
+Release:	2
 Copyright:	MIT
 Group:		X11/Applications/Graphics
 Group(pl):	X11/Aplikacje/Grafika
@@ -63,14 +63,14 @@ make 	CXXDEBUGFLAGS="$RPM_OPT_FLAGS" \
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_sysconfdir}/applnk/Graphics
+install -d $RPM_BUILD_ROOT%{_datadir}/applnk/Graphics
 
 make DESTDIR=$RPM_BUILD_ROOT \
         MANDIR=%{_mandir}/man1 \
         BINDIR=%{_bindir} \
         install install.man
 
-install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/applnk/Graphics
+install %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/applnk/Graphics
 
 gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man1/* \
 	Doc/CHANGES README README.PNG TODO Doc/Operator.doc ChangeLog
@@ -85,6 +85,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %attr(755,root,root) %{_bindir}/xpaint
 
-%{_sysconfdir}/applnk/Graphics/xpaint.desktop
+%{_datadir}/applnk/Graphics/xpaint.desktop
 %{_libdir}/X11/app-defaults/XPaint
 %{_mandir}/man1/*
