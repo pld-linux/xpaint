@@ -84,8 +84,6 @@ rm -rf $RPM_BUILD_ROOT
 - added pl translation,
 - changed Buildroot to /tmp/%%{name}-%%{version}-root,
 - added using %%{name} and %%{version} in Source,
-- changeded dependences to "Requires: %%{name} = %%{version}" in devel
-  subpackage,
 - added using $RPM_OPT_FLAGS during compile,
 - added gzipping man pages,
 - added URL,
