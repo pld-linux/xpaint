@@ -72,4 +72,5 @@ Type=Application
 Terminal=false
 MapNotify=false
 Encoding=UTF-8
+Categories=Graphics;2DGraphics;
 # vi: encoding=utf-8
