@@ -13,7 +13,7 @@ Group:		X11/Applications/Graphics
 Source0:	http://www.image.dk/~torsten/xpaint/%{name}-%{version}.tar.gz
 Source1:	%{name}.desktop
 Source2:	%{name}.png
-Icon:		xpaint.xpm
+#Icon:		xpaint.xpm
 URL:		http://www.image.dk/~torsten/xpaint/
 BuildRequires:	XFree86-devel
 BuildRequires:	libjpeg-devel
