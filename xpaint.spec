@@ -4,25 +4,27 @@ Summary(fr):	Programme de dessin sous X
 Summary(pl):	Program do rysowania pod X Window
 Summary(tr):	X altýnda boyama programý
 Name:		xpaint
-Version:	2.5.6
-Release:	2
+Version:	2.5.7
+Release:	1
 Copyright:	MIT
 Group:		X11/Applications/Graphics
 Group(pl):	X11/Aplikacje/Grafika
-URL:            http://www.danbbs.dk/~torsten/xpaint/
-Source:		ftp://sunsite.unc.edu/pub/Linux/apps/graphics/draw/%{name}-%{version}.tar.gz
+Source0:	ftp://sunsite.unc.edu/pub/Linux/apps/graphics/draw/%{name}-%{version}.tar.gz
+Source1:	xpaint.desktop
 Patch:		xpaint-config.patch
 Icon:		xpaint.gif
+URL:            http://home.worldonline.dk/~torsten/xpaint/index.html
 BuildRequires:	XFree86-devel
-BuildRequires:    xpm-devel
-BuildRequires:    libjpeg-devel
-BuildRequires:    libtiff-devel
-BuildRequires:    libpng-devel
-BuildRequires:    zlib-devel
+BuildRequires:	xpm-devel
+BuildRequires:	libjpeg-devel
+BuildRequires:	libtiff-devel
+BuildRequires:	libpng-devel
+BuildRequires:	zlib-devel
 BuildRoot:	/tmp/%{name}-%{version}-root
 
-%define	_prefix	/usr/X11R6
-%define _mandir %{_prefix}/man
+%define		_prefix		/usr/X11R6
+%define 	_mandir		%{_prefix}/man
+%define		_sysconfdir	/etc/X11
 
 %description
 XPaint is a color image editing tool which features most standard paint
@@ -63,20 +65,14 @@ make \
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/etc/X11/wmconfig
+install -d $RPM_BUILD_ROOT%{_sysconfdir}/applnk/Graphics
 
 make DESTDIR=$RPM_BUILD_ROOT \
         MANDIR=%{_mandir}/man1 \
         BINDIR=%{_bindir} \
         install install.man
 
-
-cat > $RPM_BUILD_ROOT/etc/X11/wmconfig/%{name} <<EOF
-%{name} name "%{name}"
-%{name} description "Paint Program"
-%{name} group Graphics
-%{name} exec "%{name} &"
-EOF
+install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/applnk/Graphics
 
 gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man1/* \
 	Doc/CHANGES README README.PNG TODO Doc/Operator.doc ChangeLog
@@ -88,8 +84,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc {Doc/CHANGES,README,README.PNG,TODO,ChangeLog,Doc/Operator.doc}.gz
 %doc Doc/sample.Xdefaults
-%attr(755,root,root) %{_bindir}/%{name}
 
-/etc/X11/wmconfig/%{name}
+%attr(755,root,root) %{_bindir}/xpaint
+
+%{_sysconfdir}/applnk/Graphics/xpaint.desktop
 %{_libdir}/X11/app-defaults/XPaint
 %{_mandir}/man1/*
