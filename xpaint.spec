@@ -1,25 +1,27 @@
 Summary:	paint program for X
 Summary(de):	Malprogramm für X
+Summary(es):	Programa de diseño para X
 Summary(fr):	Programme de dessin sous X
 Summary(pl):	Program do rysowania pod X Window
+Summary(pt_BR):	Programa de desenho para X
 Summary(tr):	X altýnda boyama programý
 Name:		xpaint
-Version:	2.5.7
-Release:	3
+Version:	2.6.2
+Release:	1
 License:	MIT
 Group:		X11/Applications/Graphics
 Group(de):	X11/Applikationen/Grafik
 Group(pl):	X11/Aplikacje/Grafika
-Source0:	ftp://sunsite.unc.edu/pub/Linux/apps/graphics/draw/%{name}-%{version}.tar.gz
+Group(pt):	X11/Aplicações/Gráficos
+Source0:	http://www.image.dk/~torsten/xpaint/%{name}-%{version}.tar.gz
 Source1:	%{name}.desktop
-Patch0:		%{name}-config.patch
-Icon:		xpaint.gif
-URL:		http://home.worldonline.dk/~torsten/xpaint/index.html
+Source2:	%{name}.png
+Icon:		xpaint.xpm
+URL:		http://www.image.dk/~torsten/xpaint/
 BuildRequires:	XFree86-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libtiff-devel
-BuildRequires:	libpng >= 1.0.8
-BuildRequires:	zlib-devel
+BuildRequires:	libpng-devel >= 1.0.8
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
@@ -36,6 +38,13 @@ XPaint ist ein Farbbildbearbeitungs-Tool mit den meisten üblichen,
 aber auch erweiterten Funktionen wie Bildverarbeitungsalgorithmen. Sie
 können mehrere Bilder gleichzeitig bearbeiten.
 
+%description -l es
+XPaint es una herramienta de edición de imágenes coloridas que
+presenta la mayoría de las opciones padrón de programas de pintura,
+así como características avanzadas como procesamiento de imágenes a
+través de algoritmos. También permite la edición de múltiples imágenes
+simultáneamente.
+
 %description -l fr
 xpaint est un outil d'édition d'images en couleur offrant la plupart
 des options du programme paint, ainsi que des caractéristiques
@@ -47,30 +56,39 @@ XPaint jest programem do edycji kolorowych grafik z funkcjami jakie ma
 wiêkszo¶æ typowych programów tego typu, a tak¿e niektóre bardziej
 zaawansowane funkcje, jak ró¿ne algorytmy obróbki grafiki.
 
+%description -l pt_BR
+XPaint é uma ferramenta de edição de imagens coloridas que apresenta a
+maioria das opções-padrão de programas de pintura, assim como
+características avançadas como processamento de imagens através de
+algoritmos. Ele também permite a edição de múltiplas imagens
+simultaneamente.
+
 %description -l tr
 Xpaint, X ortamýnda en temel resimleme yeteneklerini barýndýran basit
 bir programdýr.
 
 %prep
 %setup -q -n %{name}
-%patch -p0
 
 %build
 xmkmf
 %{__make} Makefiles
-%{__make} CXXDEBUGFLAGS="%{rpmcflags}" \
+%{__make} \
+	CC=%{__cc} \
+	CXXDEBUGFLAGS="%{rpmcflags}" \
 	CDEBUGFLAGS="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_applnkdir}/Graphics
+install -d $RPM_BUILD_ROOT{%{_applnkdir}/Graphics,%{_pixmapsdir}}
 
-%{__make} DESTDIR=$RPM_BUILD_ROOT \
+%{__make} install install.man \
+	DESTDIR=$RPM_BUILD_ROOT \
         MANDIR=%{_mandir}/man1 \
-        BINDIR=%{_bindir} \
-        install install.man
+        BINDIR=%{_bindir}
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Graphics
+install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
 
 gzip -9nf Doc/CHANGES README README.PNG TODO Doc/Operator.doc ChangeLog
 
@@ -81,9 +99,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc {Doc/CHANGES,README,README.PNG,TODO,ChangeLog,Doc/Operator.doc}.gz
 %doc Doc/sample.Xdefaults
-
 %attr(755,root,root) %{_bindir}/xpaint
-
-%{_applnkdir}/Graphics/xpaint.desktop
 %{_libdir}/X11/app-defaults/XPaint
 %{_mandir}/man1/*
+%{_applnkdir}/Graphics/xpaint.desktop
+%{_pixmapsdir}/*
