@@ -71,4 +71,5 @@ Icon=xpaint.png
 Type=Application
 Terminal=0
 MapNotify=false
+Encoding=UTF-8
 # vi: encoding=utf-8
