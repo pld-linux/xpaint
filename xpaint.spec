@@ -5,7 +5,7 @@ Summary(pl):	Program do rysowania pod X Window
 Summary(tr):	X altýnda boyama programý
 Name:		xpaint
 Version:	2.5.7
-Release:	2
+Release: 3
 Copyright:	MIT
 Group:		X11/Applications/Graphics
 Group(pl):	X11/Aplikacje/Grafika
@@ -18,7 +18,7 @@ BuildRequires:	XFree86-devel
 BuildRequires:	xpm-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libtiff-devel
-BuildRequires:	libpng-devel
+BuildRequires:	libpng >= 1.0.8
 BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
