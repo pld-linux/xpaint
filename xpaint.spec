@@ -21,6 +21,8 @@ BuildPrereq:    libpng-devel
 BuildPrereq:    zlib-devel
 BuildRoot:	/tmp/%{name}-%{version}-root
 
+%define	_prefix		/usr/X11R6
+
 %description
 XPaint is a color image editing tool which features most standard paint
 program options, as well as advanced features such as image processing
@@ -48,29 +50,34 @@ Xpaint, X ortamýnda en temel resimleme yeteneklerini barýndýran basit bir
 programdýr.
 
 %prep
-%setup -q -n xpaint
+%setup -q -n %{name}
 %patch -p0
 
 %build
 xmkmf
 make Makefiles
-make CXXDEBUGFLAGS="$RPM_OPT_FLAGS" CDEBUGFLAGS="$RPM_OPT_FLAGS"
+make \
+	CXXDEBUGFLAGS="$RPM_OPT_FLAGS" \
+	CDEBUGFLAGS="$RPM_OPT_FLAGS"
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/etc/X11/wmconfig
 
-make DESTDIR=$RPM_BUILD_ROOT install 
-make MANPATH=$RPM_BUILD_ROOT/usr/X11R6/share/man install.man
+make DESTDIR=$RPM_BUILD_ROOT \
+        MANDIR=%{_mandir}/man1 \
+        BINDIR=%{_bindir} \
+        install install.man
 
-cat > $RPM_BUILD_ROOT/etc/X11/wmconfig/xpaint <<EOF
-xpaint name "xpaint"
-xpaint description "Paint Program"
-xpaint group Graphics
-xpaint exec "xpaint &"
+
+cat > $RPM_BUILD_ROOT/etc/X11/wmconfig/%{name} <<EOF
+%{name} name "%{name}"
+%{name} description "Paint Program"
+%{name} group Graphics
+%{name} exec "%{name} &"
 EOF
 
-gzip -9nf $RPM_BUILD_ROOT/usr/X11R6/share/man/man1/* \
+gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man1/* \
 	Doc/CHANGES README README.PNG TODO Doc/Operator.doc ChangeLog
 
 %clean
@@ -80,11 +87,11 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc {Doc/CHANGES,README,README.PNG,TODO,ChangeLog,Doc/Operator.doc}.gz
 %doc Doc/sample.Xdefaults
-%attr(755,root,root) /usr/X11R6/bin/xpaint
+%attr(755,root,root) %{_bindir}/%{name}
 
-/etc/X11/wmconfig/xpaint
-/usr/X11R6/lib/X11/app-defaults/XPaint
-/usr/X11R6/share/man/man1/*
+/etc/X11/wmconfig/%{name}
+%{_libdir}/X11/app-defaults/XPaint
+%{_mandir}/man1/*
 
 %changelog
 * Tue May 11 1999 Piotr Czerwiñski <pius@pld.org.pl>
