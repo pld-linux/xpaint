@@ -15,7 +15,6 @@ Patch:		xpaint-config.patch
 Icon:		xpaint.gif
 URL:            http://home.worldonline.dk/~torsten/xpaint/index.html
 BuildRequires:	XFree86-devel
-BuildRequires:	xpm-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libtiff-devel
 BuildRequires:	libpng >= 1.0.8
