@@ -21,7 +21,7 @@ BuildPrereq:    libpng-devel
 BuildPrereq:    zlib-devel
 BuildRoot:	/tmp/%{name}-%{version}-root
 
-%define	_prefix		/usr/X11R6
+%define	_prefix	/usr/X11R6
 
 %description
 XPaint is a color image editing tool which features most standard paint
@@ -94,49 +94,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/*
 
 %changelog
-* Tue May 11 1999 Piotr Czerwiñski <pius@pld.org.pl>
+* Thu May 20 1999 Piotr Czerwiñski <pius@pld.org.pl> 
   [2.5.6-2]
-- added gzipping documentation,
-- removed man group from man pages,
-- removed %config from wmconfig file,
-- fixed %description field,
-- added xpaint-config.patch,
-- added BuildPrereqs,
-- cosmetic changes for common l&f,
-- recompiled on rpm 3,
-- package is FHS 2.0 compliant.
-
-* Sun Nov 29 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [2.5.6-1]
-- added pl translation,
-- changed Buildroot to /tmp/%%{name}-%%{version}-root,
-- added using %%{name} and %%{version} in Source,
-- added using $RPM_OPT_FLAGS during compile,
-- added gzipping man pages,
-- added URL,
-- added full %attr description in %files.
-
-* Mon Aug  3 1998 Jeff Johnson <jbj@redhat.com>
-- build root.
-
-* Tue Jun 09 1998 Mike Wangsmo <wanger@redhat.com>
-- changed the docs from being %config files.
-
-* Fri May 01 1998 Prospector System <bugs@redhat.com>
-- translations modified for de, fr, tr
-
-* Thu Apr 16 1998 Erik Troan <ewt@redhat.com>
-- built against libpng 1.0
-
-* Fri Oct 24 1997 Marc Ewing <marc@redhat.com>
-- new release
-- wmconfig
-
-* Wed Oct 15 1997 Erik Troan <ewt@redhat.com>
-- build against new libpng
-
-* Thu Jul 31 1997 Erik Troan <ewt@redhat.com>
-- built against glibc
-
-* Tue Mar 25 1997 Erik Troan <ewt@redhat.com>
-- "make install.man" places man page in wrong location
+- package is FHS 2.0 compliant,
+- spec file based on RH version; rewritten for PLD use by me 
+  and Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>.
