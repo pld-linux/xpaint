@@ -13,12 +13,12 @@ URL:            http://www.danbbs.dk/~torsten/xpaint/
 Source:		ftp://sunsite.unc.edu/pub/Linux/apps/graphics/draw/%{name}-%{version}.tar.gz
 Patch:		xpaint-config.patch
 Icon:		xpaint.gif
-BuildPrereq:	XFree86-devel
-BuildPrereq:    xpm-devel
-BuildPrereq:    libjpeg-devel
-BuildPrereq:    libtiff-devel
-BuildPrereq:    libpng-devel
-BuildPrereq:    zlib-devel
+BuildRequires:	XFree86-devel
+BuildRequires:    xpm-devel
+BuildRequires:    libjpeg-devel
+BuildRequires:    libtiff-devel
+BuildRequires:    libpng-devel
+BuildRequires:    zlib-devel
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %define	_prefix	/usr/X11R6
