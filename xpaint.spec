@@ -19,9 +19,11 @@ Patch0:		%{name}-errno.patch
 URL:		http://www.image.dk/~torsten/xpaint/
 BuildRequires:	XFree86-devel
 BuildRequires:	libjpeg-devel
-BuildRequires:	libtiff-devel
 BuildRequires:	libpng-devel >= 1.0.8
+BuildRequires:	libtiff-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		_appdefsdir	/usr/X11R6/lib/X11/app-defaults
 
 %description
 XPaint is a color image editing tool which features most standard
@@ -73,7 +75,7 @@ xmkmf
 %{__make} \
 	CC=%{__cc} \
 	CXXDEBUGFLAGS="%{rpmcflags}" \
-	CDEBUGFLAGS="%{rpmcflags} `pkg-config --cflags libpng12 2>/dev/null`"
+	CDEBUGFLAGS="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -94,7 +96,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc Doc/CHANGES README README.PNG TODO Doc/Operator.doc ChangeLog Doc/sample.Xdefaults
 %attr(755,root,root) %{_bindir}/xpaint
-%{_prefix}/X11R6/lib/X11/app-defaults/XPaint
+%{_appdefsdir}/XPaint
 %{_mandir}/man1/*
 %{_applnkdir}/Graphics/xpaint.desktop
 %{_pixmapsdir}/*
