@@ -73,7 +73,7 @@ xmkmf
 %{__make} \
 	CC=%{__cc} \
 	CXXDEBUGFLAGS="%{rpmcflags}" \
-	CDEBUGFLAGS="%{rpmcflags}"
+	CDEBUGFLAGS="%{rpmcflags} `pkg-config --cflags libpng12 2>/dev/null`"
 
 %install
 rm -rf $RPM_BUILD_ROOT
