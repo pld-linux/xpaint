@@ -58,8 +58,7 @@ programdýr.
 %build
 xmkmf
 make Makefiles
-make \
-	CXXDEBUGFLAGS="$RPM_OPT_FLAGS" \
+make 	CXXDEBUGFLAGS="$RPM_OPT_FLAGS" \
 	CDEBUGFLAGS="$RPM_OPT_FLAGS"
 
 %install
