@@ -7,7 +7,7 @@ Summary(pt_BR):	Programa de desenho para X
 Summary(tr):	X altýnda boyama programý
 Name:		xpaint
 Version:	2.6.2
-Release:	1
+Release:	2
 License:	MIT
 Group:		X11/Applications/Graphics
 Group(de):	X11/Applikationen/Grafik
