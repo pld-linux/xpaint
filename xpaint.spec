@@ -10,9 +10,6 @@ Version:	2.6.2
 Release:	2
 License:	MIT
 Group:		X11/Applications/Graphics
-Group(de):	X11/Applikationen/Grafik
-Group(pl):	X11/Aplikacje/Grafika
-Group(pt):	X11/Aplicações/Gráficos
 Source0:	http://www.image.dk/~torsten/xpaint/%{name}-%{version}.tar.gz
 Source1:	%{name}.desktop
 Source2:	%{name}.png
