@@ -11,6 +11,7 @@ Release:	4
 License:	MIT
 Group:		X11/Applications/Graphics
 Source0:	http://www.image.dk/~torsten/xpaint/%{name}-%{version}.tar.gz
+# Source0-md5:	9f22460f15a189721573d88454ce3d41
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 #Icon:		xpaint.xpm
@@ -20,7 +21,6 @@ BuildRequires:	libjpeg-devel
 BuildRequires:	libtiff-devel
 BuildRequires:	libpng-devel >= 1.0.8
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
 
 %description
 XPaint is a color image editing tool which features most standard
@@ -79,8 +79,8 @@ install -d $RPM_BUILD_ROOT{%{_applnkdir}/Graphics,%{_pixmapsdir}}
 
 %{__make} install install.man \
 	DESTDIR=$RPM_BUILD_ROOT \
-        MANDIR=%{_mandir}/man1 \
-        BINDIR=%{_bindir}
+	MANDIR=%{_mandir}/man1 \
+	BINDIR=%{_bindir}
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Graphics
 install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
