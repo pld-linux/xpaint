@@ -1,0 +1,23 @@
+diff -urN xpaint.orig/rw/libpnmrw.c xpaint/rw/libpnmrw.c
+--- xpaint.orig/rw/libpnmrw.c	2000-10-19 22:56:14.000000000 +0200
++++ xpaint/rw/libpnmrw.c	2003-12-24 01:31:01.361888304 +0100
+@@ -42,6 +42,7 @@
+ #endif
+ #else				/*SYSV */
+ #include <strings.h>
++#include <errno.h>
+ #endif				/*SYSV */
+ 
+ void *malloc(int);
+diff -urN xpaint.orig/rw/writeGIF.c xpaint/rw/writeGIF.c
+--- xpaint.orig/rw/writeGIF.c	2000-10-02 22:53:33.000000000 +0200
++++ xpaint/rw/writeGIF.c	2003-12-24 01:26:58.101869448 +0100
+@@ -40,7 +40,7 @@
+ #include <stdio.h>
+ #include "image.h"
+ #include "rwTable.h"
+-#ifdef __EMX__
++#ifndef __EMX__
+ #include <errno.h>
+ #endif
+ 
