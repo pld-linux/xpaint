@@ -97,8 +97,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc {Doc/CHANGES,README,README.PNG,TODO,ChangeLog,Doc/Operator.doc}.gz
-%doc Doc/sample.Xdefaults
+%doc Doc/*.gz *.gzc Doc/sample.Xdefaults
 %attr(755,root,root) %{_bindir}/xpaint
 %{_libdir}/X11/app-defaults/XPaint
 %{_mandir}/man1/*
