@@ -1,4 +1,4 @@
-Summary:	paint program for X
+Summary:	Paint program for X
 Summary(de):	Malprogramm für X
 Summary(es):	Programa de diseño para X
 Summary(fr):	Programme de dessin sous X
@@ -59,7 +59,7 @@ algoritmos. Ele também permite a edição de múltiplas imagens
 simultaneamente.
 
 %description -l tr
-Xpaint, X ortamýnda en temel resimleme yeteneklerini barýndýran basit
+XPaint, X ortamýnda en temel resimleme yeteneklerini barýndýran basit
 bir programdýr.
 
 %prep
