@@ -22,6 +22,7 @@ BuildPrereq:    zlib-devel
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %define	_prefix	/usr/X11R6
+%define _mandir %{_prefix}/man
 
 %description
 XPaint is a color image editing tool which features most standard paint
