@@ -57,15 +57,15 @@ programdýr.
 
 %build
 xmkmf
-make Makefiles
-make 	CXXDEBUGFLAGS="$RPM_OPT_FLAGS" \
+%{__make} Makefiles
+%{__make} 	CXXDEBUGFLAGS="$RPM_OPT_FLAGS" \
 	CDEBUGFLAGS="$RPM_OPT_FLAGS"
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_datadir}/applnk/Graphics
 
-make DESTDIR=$RPM_BUILD_ROOT \
+%{__make} DESTDIR=$RPM_BUILD_ROOT \
         MANDIR=%{_mandir}/man1 \
         BINDIR=%{_bindir} \
         install install.man
