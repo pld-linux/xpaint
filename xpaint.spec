@@ -7,13 +7,14 @@ Summary(pt_BR):	Programa de desenho para X
 Summary(tr):	X altýnda boyama programý
 Name:		xpaint
 Version:	2.6.2
-Release:	4
+Release:	5
 License:	MIT
 Group:		X11/Applications/Graphics
 Source0:	http://www.image.dk/~torsten/xpaint/%{name}-%{version}.tar.gz
 # Source0-md5:	9f22460f15a189721573d88454ce3d41
 Source1:	%{name}.desktop
 Source2:	%{name}.png
+Patch0:		%{name}-errno.patch
 #Icon:		xpaint.xpm
 URL:		http://www.image.dk/~torsten/xpaint/
 BuildRequires:	XFree86-devel
@@ -64,6 +65,7 @@ bir programdýr.
 
 %prep
 %setup -q -n %{name}
+%patch0 -p1
 
 %build
 xmkmf
@@ -92,7 +94,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc Doc/CHANGES README README.PNG TODO Doc/Operator.doc ChangeLog Doc/sample.Xdefaults
 %attr(755,root,root) %{_bindir}/xpaint
-%{_libdir}/X11/app-defaults/XPaint
+%{_prefix}/X11R6/lib/X11/app-defaults/XPaint
 %{_mandir}/man1/*
 %{_applnkdir}/Graphics/xpaint.desktop
 %{_pixmapsdir}/*
