@@ -73,7 +73,7 @@ bir programdýr.
 xmkmf
 %{__make} Makefiles
 %{__make} \
-	CC=%{__cc} \
+	CC="%{__cc}" \
 	CXXDEBUGFLAGS="%{rpmcflags}" \
 	CDEBUGFLAGS="%{rpmcflags}"
 
