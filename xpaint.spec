@@ -10,13 +10,13 @@ Version:	2.6.2
 Release:	8
 License:	MIT
 Group:		X11/Applications/Graphics
-Source0:	http://www.image.dk/~torsten/xpaint/%{name}-%{version}.tar.gz
+Source0:	http://dl.sourceforge.net/sf-xpaint/%{name}-%{version}.tar.gz
 # Source0-md5:	9f22460f15a189721573d88454ce3d41
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-errno.patch
 #Icon:		xpaint.xpm
-URL:		http://www.image.dk/~torsten/xpaint/
+URL:		http://sf-xpaint.sourceforge.net/
 BuildRequires:	XFree86-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel >= 1.0.8
