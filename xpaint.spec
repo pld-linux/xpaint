@@ -6,24 +6,26 @@ Summary(pl):	Program do rysowania pod X Window
 Summary(pt_BR):	Programa de desenho para X
 Summary(tr):	X altýnda boyama programý
 Name:		xpaint
-Version:	2.6.2
-Release:	8
+Version:	2.7.8.1
+Release:	1
 License:	MIT
 Group:		X11/Applications/Graphics
-Source0:	http://dl.sourceforge.net/sf-xpaint/%{name}-%{version}.tar.gz
-# Source0-md5:	9f22460f15a189721573d88454ce3d41
+Source0:	http://dl.sourceforge.net/sf-xpaint/%{name}-%{version}.tar.bz2
+# Source0-md5:	e608680bd362531231af521f0df377ae
 Source1:	%{name}.desktop
 Source2:	%{name}.png
-Patch0:		%{name}-errno.patch
-#Icon:		xpaint.xpm
 URL:		http://sf-xpaint.sourceforge.net/
-BuildRequires:	XFree86-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel >= 1.0.8
 BuildRequires:	libtiff-devel
+BuildRequires:	xorg-cf-files
+BuildRequires:	xorg-lib-libXaw-devel
+BuildRequires:	xorg-lib-libXpm-devel >= 3.4c
+BuildRequires:	xorg-util-imake
+Requires:	xorg-lib-libXt >= 1.0.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_appdefsdir	/usr/X11R6/lib/X11/app-defaults
+%define		_appdefsdir	/usr/share/X11/app-defaults
 
 %description
 XPaint is a color image editing tool which features most standard
@@ -66,16 +68,17 @@ XPaint, X ortamýnda en temel resimleme yeteneklerini barýndýran basit
 bir programdýr.
 
 %prep
-%setup -q -n %{name}
-%patch0 -p1
+%setup -q
 
 %build
 xmkmf
-%{__make} Makefiles
+# to get stable results even if Xaw3d/neXtaw is installed
+./configure xaw
 %{__make} \
 	CC="%{__cc}" \
 	CXXDEBUGFLAGS="%{rpmcflags}" \
-	CDEBUGFLAGS="%{rpmcflags}"
+	CDEBUGFLAGS="%{rpmcflags}" \
+	XPM_INCLUDE="-I/usr/include/X11"
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -83,8 +86,9 @@ install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}}
 
 %{__make} install install.man \
 	DESTDIR=$RPM_BUILD_ROOT \
-	MANDIR=%{_mandir}/man1 \
-	BINDIR=%{_bindir}
+	BINDIR=%{_bindir} \
+	CONFDIR=%{_datadir}/X11 \
+	MANDIR=%{_mandir}/man1
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
@@ -97,6 +101,20 @@ rm -rf $RPM_BUILD_ROOT
 %doc Doc/CHANGES README README.PNG TODO Doc/Operator.doc ChangeLog Doc/sample.Xdefaults
 %attr(755,root,root) %{_bindir}/xpaint
 %{_appdefsdir}/XPaint
-%{_mandir}/man1/*
-%{_desktopdir}/*
-%{_pixmapsdir}/*
+%lang(es) %{_appdefsdir}/XPaint_es
+%lang(fr) %{_appdefsdir}/XPaint_fr
+%dir %{_datadir}/xpaint
+%{_datadir}/xpaint/XPaintIcon.xpm
+%{_datadir}/xpaint/c_scripts
+%{_datadir}/xpaint/include
+%dir %{_datadir}/xpaint/help
+%{_datadir}/xpaint/help/Help
+%lang(es) %{_datadir}/xpaint/help/Help_es
+%lang(fr) %{_datadir}/xpaint/help/Help_fr
+%dir %{_datadir}/xpaint/messages
+%{_datadir}/xpaint/messages/Messages
+%lang(es) %{_datadir}/xpaint/messages/Messages_es
+%lang(fr) %{_datadir}/xpaint/messages/Messages_fr
+%{_mandir}/man1/xpaint.1*
+%{_desktopdir}/xpaint.desktop
+%{_pixmapsdir}/xpaint.png
