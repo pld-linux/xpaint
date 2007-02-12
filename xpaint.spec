@@ -1,10 +1,10 @@
 Summary:	Paint program for X
-Summary(de):	Malprogramm für X
-Summary(es):	Programa de diseño para X
-Summary(fr):	Programme de dessin sous X
-Summary(pl):	Program do rysowania pod X Window
-Summary(pt_BR):	Programa de desenho para X
-Summary(tr):	X altında boyama programı
+Summary(de.UTF-8):   Malprogramm fÃ¼r X
+Summary(es.UTF-8):   Programa de diseÃ±o para X
+Summary(fr.UTF-8):   Programme de dessin sous X
+Summary(pl.UTF-8):   Program do rysowania pod X Window
+Summary(pt_BR.UTF-8):   Programa de desenho para X
+Summary(tr.UTF-8):   X altÄ±nda boyama programÄ±
 Name:		xpaint
 Version:	2.7.8.1
 Release:	1
@@ -33,39 +33,39 @@ paint program options, as well as advanced features such as image
 processing algorithms. It allows for the editing of multiple images
 simultaneously and supp
 
-%description -l de
-XPaint ist ein Farbbildbearbeitungs-Tool mit den meisten üblichen,
+%description -l de.UTF-8
+XPaint ist ein Farbbildbearbeitungs-Tool mit den meisten Ã¼blichen,
 aber auch erweiterten Funktionen wie Bildverarbeitungsalgorithmen. Sie
-können mehrere Bilder gleichzeitig bearbeiten.
+kÃ¶nnen mehrere Bilder gleichzeitig bearbeiten.
 
-%description -l es
-XPaint es una herramienta de edición de imágenes coloridas que
-presenta la mayoría de las opciones padrón de programas de pintura,
-así como características avanzadas como procesamiento de imágenes a
-través de algoritmos. También permite la edición de múltiples imágenes
-simultáneamente.
+%description -l es.UTF-8
+XPaint es una herramienta de ediciÃ³n de imÃ¡genes coloridas que
+presenta la mayorÃ­a de las opciones padrÃ³n de programas de pintura,
+asÃ­ como caracterÃ­sticas avanzadas como procesamiento de imÃ¡genes a
+travÃ©s de algoritmos. TambiÃ©n permite la ediciÃ³n de mÃºltiples imÃ¡genes
+simultÃ¡neamente.
 
-%description -l fr
-xpaint est un outil d'édition d'images en couleur offrant la plupart
-des options du programme paint, ainsi que des caractéristiques
-avancées comme des algorithmes de traitement d'image. Il permet
-l'édition simultanée de plusieurs images et plus.
+%description -l fr.UTF-8
+xpaint est un outil d'Ã©dition d'images en couleur offrant la plupart
+des options du programme paint, ainsi que des caractÃ©ristiques
+avancÃ©es comme des algorithmes de traitement d'image. Il permet
+l'Ã©dition simultanÃ©e de plusieurs images et plus.
 
-%description -l pl
+%description -l pl.UTF-8
 XPaint jest programem do edycji kolorowych grafik z funkcjami jakie ma
-wiêkszo¶æ typowych programów tego typu, a tak¿e niektóre bardziej
-zaawansowane funkcje, jak ró¿ne algorytmy obróbki grafiki.
+wiÄ™kszoÅ›Ä‡ typowych programÃ³w tego typu, a takÅ¼e niektÃ³re bardziej
+zaawansowane funkcje, jak rÃ³Å¼ne algorytmy obrÃ³bki grafiki.
 
-%description -l pt_BR
-XPaint é uma ferramenta de edição de imagens coloridas que apresenta a
-maioria das opções-padrão de programas de pintura, assim como
-características avançadas como processamento de imagens através de
-algoritmos. Ele também permite a edição de múltiplas imagens
+%description -l pt_BR.UTF-8
+XPaint Ã© uma ferramenta de ediÃ§Ã£o de imagens coloridas que apresenta a
+maioria das opÃ§Ãµes-padrÃ£o de programas de pintura, assim como
+caracterÃ­sticas avanÃ§adas como processamento de imagens atravÃ©s de
+algoritmos. Ele tambÃ©m permite a ediÃ§Ã£o de mÃºltiplas imagens
 simultaneamente.
 
-%description -l tr
-XPaint, X ortamında en temel resimleme yeteneklerini barındıran basit
-bir programdır.
+%description -l tr.UTF-8
+XPaint, X ortamÄ±nda en temel resimleme yeteneklerini barÄ±ndÄ±ran basit
+bir programdÄ±r.
 
 %prep
 %setup -q
