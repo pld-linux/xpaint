@@ -1,10 +1,10 @@
 Summary:	Paint program for X
-Summary(de.UTF-8):   Malprogramm für X
-Summary(es.UTF-8):   Programa de diseño para X
-Summary(fr.UTF-8):   Programme de dessin sous X
-Summary(pl.UTF-8):   Program do rysowania pod X Window
-Summary(pt_BR.UTF-8):   Programa de desenho para X
-Summary(tr.UTF-8):   X altında boyama programı
+Summary(de.UTF-8):	Malprogramm für X
+Summary(es.UTF-8):	Programa de diseño para X
+Summary(fr.UTF-8):	Programme de dessin sous X
+Summary(pl.UTF-8):	Program do rysowania pod X Window
+Summary(pt_BR.UTF-8):	Programa de desenho para X
+Summary(tr.UTF-8):	X altında boyama programı
 Name:		xpaint
 Version:	2.7.8.1
 Release:	1
