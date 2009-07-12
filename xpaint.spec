@@ -7,7 +7,7 @@ Summary(pt_BR.UTF-8):	Programa de desenho para X
 Summary(tr.UTF-8):	X altında boyama programı
 Name:		xpaint
 Version:	2.7.8.1
-Release:	3
+Release:	4
 License:	MIT
 Group:		X11/Applications/Graphics
 Source0:	http://dl.sourceforge.net/sf-xpaint/%{name}-%{version}.tar.bz2
