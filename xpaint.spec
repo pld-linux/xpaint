@@ -6,12 +6,12 @@ Summary(pl.UTF-8):	Program do rysowania pod X Window
 Summary(pt_BR.UTF-8):	Programa de desenho para X
 Summary(tr.UTF-8):	X altında boyama programı
 Name:		xpaint
-Version:	2.7.8.1
-Release:	4
+Version:	2.8.0
+Release:	1
 License:	MIT
 Group:		X11/Applications/Graphics
 Source0:	http://dl.sourceforge.net/sf-xpaint/%{name}-%{version}.tar.bz2
-# Source0-md5:	e608680bd362531231af521f0df377ae
+# Source0-md5:	29a9a6438507da3f7ab336a40940fe9b
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 URL:		http://sf-xpaint.sourceforge.net/
@@ -22,6 +22,7 @@ BuildRequires:	xorg-cf-files
 BuildRequires:	xorg-lib-libXaw-devel
 BuildRequires:	xorg-lib-libXpm-devel >= 3.4c
 BuildRequires:	xorg-util-imake
+BuildRequires:	xorg-util-gccmakedep
 Requires:	xorg-lib-libXt >= 1.0.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -99,7 +100,9 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc Doc/CHANGES README README.PNG TODO Doc/Operator.doc ChangeLog Doc/sample.Xdefaults
+%attr(755,root,root) %{_bindir}/imgmerge
 %attr(755,root,root) %{_bindir}/xpaint
+%attr(755,root,root) %{_bindir}/pdfconcat
 %{_appdefsdir}/XPaint
 %lang(es) %{_appdefsdir}/XPaint_es
 %lang(fr) %{_appdefsdir}/XPaint_fr
@@ -107,6 +110,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/xpaint/XPaintIcon.xpm
 %{_datadir}/xpaint/c_scripts
 %{_datadir}/xpaint/include
+%dir %{_datadir}/xpaint/bin
+%{_datadir}/xpaint/bin/xpaint_ocr
+%dir %{_datadir}/xpaint/bitmaps
+%{_datadir}/xpaint/bitmaps/brushbox.cfg
+%dir %{_datadir}/xpaint/bitmaps/brushes
+%{_datadir}/xpaint/bitmaps/brushes/*.xpm
+%dir %{_datadir}/xpaint/bitmaps/elec
+%{_datadir}/xpaint/bitmaps/elec/*.xpm
 %dir %{_datadir}/xpaint/help
 %{_datadir}/xpaint/help/Help
 %lang(es) %{_datadir}/xpaint/help/Help_es
@@ -118,3 +129,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xpaint.1*
 %{_desktopdir}/xpaint.desktop
 %{_pixmapsdir}/xpaint.png
+%{_libdir}/X11/app-defaults
