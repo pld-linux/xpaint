@@ -7,7 +7,7 @@ Summary(pt_BR.UTF-8):	Programa de desenho para X
 Summary(tr.UTF-8):	X altında boyama programı
 Name:		xpaint
 Version:	2.8.13
-Release:	1
+Release:	2
 License:	MIT
 Group:		X11/Applications/Graphics
 Source0:	http://dl.sourceforge.net/sf-xpaint/%{name}-%{version}.tar.bz2
@@ -16,7 +16,7 @@ Source1:	%{name}.desktop
 Source2:	%{name}.png
 URL:		http://sf-xpaint.sourceforge.net/
 BuildRequires:	libjpeg-devel
-BuildRequires:	libpng-devel >= 1.0.8
+BuildRequires:	libpng-devel >= 2:1.4.0
 BuildRequires:	libtiff-devel
 BuildRequires:	xorg-cf-files
 BuildRequires:	xorg-lib-libXaw-devel
@@ -70,6 +70,9 @@ bir programdır.
 
 %prep
 %setup -q
+
+# replace obsolete function from libpng
+%{__sed} -i -e 's/png_check_sig( (unsigned char\*) header, 8);/!png_sig_cmp((unsigned char\*) header, 0, 8);/g' rw/readWritePNG.c
 
 %build
 xmkmf
