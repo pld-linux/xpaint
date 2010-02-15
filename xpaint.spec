@@ -20,9 +20,10 @@ BuildRequires:	libpng-devel >= 2:1.4.0
 BuildRequires:	libtiff-devel
 BuildRequires:	xorg-cf-files
 BuildRequires:	xorg-lib-libXaw-devel
+BuildRequires:	xorg-lib-libXft-devel
 BuildRequires:	xorg-lib-libXpm-devel >= 3.4c
-BuildRequires:	xorg-util-imake
 BuildRequires:	xorg-util-gccmakedep
+BuildRequires:	xorg-util-imake
 Requires:	xorg-lib-libXt >= 1.0.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
