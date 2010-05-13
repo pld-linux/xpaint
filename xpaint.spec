@@ -16,6 +16,8 @@ Source1:	%{name}.desktop
 Source2:	%{name}.png
 URL:		http://sourceforge.net/projects/sf-xpaint/
 BuildRequires:	Xaw3d-devel
+BuildRequires:	bison
+BuildRequires:	flex
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel >= 2:1.4.0
 BuildRequires:	libtiff-devel
@@ -76,7 +78,7 @@ bir programdır.
 %build
 xmkmf
 # to get stable results even if libxaw/neXtaw is installed
-./configure xaw3dxft
+./configure xaw3dxft.so
 %{__make} \
 	CC="%{__cc}" \
 	CXXDEBUGFLAGS="%{rpmcflags}" \
