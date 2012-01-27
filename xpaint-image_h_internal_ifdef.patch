@@ -1,0 +1,11 @@
+--- xpaint-2.9.8/image.h~	2010-11-07 18:21:29.000000000 +0100
++++ xpaint-2.9.8/image.h	2012-01-27 11:45:45.522633052 +0100
+@@ -63,7 +63,7 @@
+     unsigned long sourceMask;
+ } Image;
+ 
+-#ifdef _XLIB_H_
++#if defined(_XLIB_H_) || defined(_X11_XLIB_H_)
+ /* Used to transfer information to routines in iprocess.c */
+ typedef struct {
+     int mergeType;
