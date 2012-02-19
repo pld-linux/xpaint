@@ -23,6 +23,7 @@ BuildRequires:	flex
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel >= 2:1.4.0
 BuildRequires:	libtiff-devel
+BuildRequires:	openjpeg-devel
 BuildRequires:	xorg-cf-files
 BuildRequires:	xorg-lib-libXaw-devel
 BuildRequires:	xorg-lib-libXft-devel
