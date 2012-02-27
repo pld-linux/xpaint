@@ -10,8 +10,7 @@ Version:	2.9.9
 Release:	1
 License:	MIT
 Group:		X11/Applications/Graphics
-#Source0:	http://dl.sourceforge.net/sf-xpaint/%{name}-%{version}.tar.bz2
-Source0:	%{name}-%{version}.tar.bz2
+Source0:	http://dl.sourceforge.net/sf-xpaint/%{name}-%{version}.tar.bz2
 # Source0-md5:	7a30a7855c32fdad84f6ee19297dd540
 Source1:	%{name}.desktop
 Source2:	%{name}.png
