@@ -6,34 +6,29 @@ Summary(pl.UTF-8):	Program do rysowania pod X Window
 Summary(pt_BR.UTF-8):	Programa de desenho para X
 Summary(tr.UTF-8):	X altında boyama programı
 Name:		xpaint
-Version:	2.9.8
+Version:	2.9.9
 Release:	1
 License:	MIT
 Group:		X11/Applications/Graphics
 Source0:	http://dl.sourceforge.net/sf-xpaint/%{name}-%{version}.tar.bz2
-# Source0-md5:	28a74219238ae78be6d571b89b3edde3
+# Source0-md5:	7a30a7855c32fdad84f6ee19297dd540
 Source1:	%{name}.desktop
 Source2:	%{name}.png
-Patch0:		%{name}-image_h_internal_ifdef.patch
-Patch1:		%{name}-link.patch
 URL:		http://sourceforge.net/projects/sf-xpaint/
-BuildRequires:	Xaw3d-devel
+BuildRequires:	libxaw3dxft-devel
 BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel >= 2:1.4.0
 BuildRequires:	libtiff-devel
 BuildRequires:	openjpeg-devel
-BuildRequires:	xorg-cf-files
 BuildRequires:	xorg-lib-libXaw-devel
 BuildRequires:	xorg-lib-libXft-devel
 BuildRequires:	xorg-lib-libXpm-devel >= 3.4c
-BuildRequires:	xorg-util-gccmakedep
-BuildRequires:	xorg-util-imake
 Requires:	xorg-lib-libXt >= 1.0.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_appdefsdir	/usr/share/X11/app-defaults
+%define		_appdefsdir	/etc/X11/app-defaults
 
 %description
 XPaint is a color image editing tool which features most standard
@@ -77,28 +72,18 @@ bir programdır.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
 
 %build
-xmkmf
-# to get stable results even if libxaw/neXtaw is installed
-./configure xaw3dxft.so
-%{__make} \
-	CC="%{__cc}" \
-	CXXDEBUGFLAGS="%{rpmcflags}" \
-	CDEBUGFLAGS="%{rpmcflags}" \
-	XPM_INCLUDE="-I/usr/include/X11"
+%configure
+
+%{__make} -j1
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}}
 
-%{__make} -j 1 install install.man \
-	DESTDIR=$RPM_BUILD_ROOT \
-	BINDIR=%{_bindir} \
-	CONFDIR=%{_datadir}/X11 \
-	MANDIR=%{_mandir}/man1
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
@@ -136,6 +121,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(es) %{_datadir}/xpaint/messages/Messages_es
 %lang(fr) %{_datadir}/xpaint/messages/Messages_fr
 %{_mandir}/man1/xpaint.1*
+%{_mandir}/man1/imgmerge.1*
+%{_mandir}/man1/pdfconcat.1*
 %{_desktopdir}/xpaint.desktop
 %{_pixmapsdir}/xpaint.png
-%{_libdir}/X11/app-defaults
