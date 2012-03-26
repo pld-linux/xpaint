@@ -7,7 +7,7 @@ Summary(pt_BR.UTF-8):	Programa de desenho para X
 Summary(tr.UTF-8):	X altında boyama programı
 Name:		xpaint
 Version:	2.9.9
-Release:	2
+Release:	3
 License:	MIT
 Group:		X11/Applications/Graphics
 Source0:	http://dl.sourceforge.net/sf-xpaint/%{name}-%{version}.tar.bz2
@@ -28,7 +28,7 @@ BuildRequires:	xorg-lib-libXpm-devel >= 3.4c
 Requires:	xorg-lib-libXt >= 1.0.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_appdefsdir	/etc/X11/app-defaults
+%define		_appdefsdir	/usr/share/X11/app-defaults
 
 %description
 XPaint is a color image editing tool which features most standard
@@ -76,14 +76,16 @@ bir programdır.
 %build
 %configure
 
-%{__make} -j1
+%{__make} -j1 \
+	XAPPLOADDIR=%{_appdefsdir}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}}
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+	DESTDIR=$RPM_BUILD_ROOT \
+	XAPPLOADDIR=%{_appdefsdir}
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
