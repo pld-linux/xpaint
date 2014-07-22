@@ -6,25 +6,28 @@ Summary(pl.UTF-8):	Program do rysowania pod X Window
 Summary(pt_BR.UTF-8):	Programa de desenho para X
 Summary(tr.UTF-8):	X altında boyama programı
 Name:		xpaint
-Version:	2.9.9
-Release:	4
+Version:	2.9.10
+Release:	1
 License:	MIT
 Group:		X11/Applications/Graphics
-Source0:	http://dl.sourceforge.net/sf-xpaint/%{name}-%{version}.tar.bz2
-# Source0-md5:	7a30a7855c32fdad84f6ee19297dd540
+Source0:	http://downloads.sourceforge.net/sf-xpaint/%{name}-%{version}.tar.bz2
+# Source0-md5:	8608e4e034aa6c09541070fcecc527e0
 Source1:	%{name}.desktop
 Source2:	%{name}.png
+Patch0:		%{name}-util-opt.patch
 URL:		http://sourceforge.net/projects/sf-xpaint/
-BuildRequires:	libxaw3dxft-devel
+BuildRequires:	libxaw3dxft-devel >= 1.6.2
 BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	libjpeg-devel
+BuildRequires:	libpgf-devel
 BuildRequires:	libpng-devel >= 2:1.4.0
 BuildRequires:	libtiff-devel
 BuildRequires:	openjpeg-devel
 BuildRequires:	xorg-lib-libXaw-devel
 BuildRequires:	xorg-lib-libXft-devel
 BuildRequires:	xorg-lib-libXpm-devel >= 3.4c
+BuildRequires:	zlib-devel
 Requires:	xorg-lib-libXt >= 1.0.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -72,6 +75,19 @@ bir programdır.
 
 %prep
 %setup -q
+%patch0 -p1
+
+# force regeneration and creation of xaw_incdir symlink
+%{__rm} version.h
+# kill prebuilt binaries
+%{__rm} util/{pdfconcat,ppmtops,pgf2pnm,*.o}
+
+%{__sed} -e 's#@CC@#%{__cc}#' \
+	-e 's#@CXX@#%{__cxx}#' \
+	-e 's#@CFLAGS@#%{rpmcflags}#' \
+	-e 's#@CXXFLAGS@#%{rpmcxxflags}#' \
+	-e 's#@CPPFLAGS@#%{rpmcppflags}#' \
+	-i util/Makefile
 
 %build
 %configure
@@ -90,6 +106,9 @@ install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}}
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
 
+# API not exported, library requires symbols from executable
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/librw.*
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -99,6 +118,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/imgmerge
 %attr(755,root,root) %{_bindir}/xpaint
 %attr(755,root,root) %{_bindir}/pdfconcat
+%attr(755,root,root) %{_bindir}/pgf2pnm
+%attr(755,root,root) %{_bindir}/ppmtops
 %{_appdefsdir}/XPaint
 %lang(es) %{_appdefsdir}/XPaint_es
 %lang(fr) %{_appdefsdir}/XPaint_fr
