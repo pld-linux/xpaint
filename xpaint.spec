@@ -75,7 +75,7 @@ bir programdır.
 
 %prep
 %setup -q
-%patch0 -p1
+%patch -P0 -p1
 
 # force regeneration and creation of xaw_incdir symlink
 %{__rm} version.h
