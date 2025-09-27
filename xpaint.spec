@@ -6,24 +6,25 @@ Summary(pl.UTF-8):	Program do rysowania pod X Window
 Summary(pt_BR.UTF-8):	Programa de desenho para X
 Summary(tr.UTF-8):	X altında boyama programı
 Name:		xpaint
-Version:	2.9.10
-Release:	2
+Version:	3.1.4
+Release:	0.1
 License:	MIT
 Group:		X11/Applications/Graphics
 Source0:	http://downloads.sourceforge.net/sf-xpaint/%{name}-%{version}.tar.bz2
-# Source0-md5:	8608e4e034aa6c09541070fcecc527e0
+# Source0-md5:	e20c3283db9513d204090d6b67f62a3a
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-util-opt.patch
 URL:		http://sourceforge.net/projects/sf-xpaint/
-BuildRequires:	libxaw3dxft-devel >= 1.6.2
 BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpgf-devel
 BuildRequires:	libpng-devel >= 2:1.4.0
 BuildRequires:	libtiff-devel
+BuildRequires:	netpbm-devel
 BuildRequires:	openjpeg-devel
+BuildRequires:	libxaw3dxft-devel >= 1.6.4
 BuildRequires:	xorg-lib-libXaw-devel
 BuildRequires:	xorg-lib-libXft-devel
 BuildRequires:	xorg-lib-libXpm-devel >= 3.4c
@@ -77,22 +78,18 @@ bir programdır.
 %setup -q
 %patch -P0 -p1
 
-# force regeneration and creation of xaw_incdir symlink
-%{__rm} version.h
-# kill prebuilt binaries
-%{__rm} util/{pdfconcat,ppmtops,pgf2pnm,*.o}
-
-%{__sed} -e 's#@CC@#%{__cc}#' \
-	-e 's#@CXX@#%{__cxx}#' \
-	-e 's#@CFLAGS@#%{rpmcflags}#' \
-	-e 's#@CXXFLAGS@#%{rpmcxxflags}#' \
-	-e 's#@CPPFLAGS@#%{rpmcppflags}#' \
-	-i util/Makefile
-
 %build
+%{__libtoolize}
+%{__aclocal}
+%{__autoconf}
+%{__automake}
 %configure
 
+export CXXFLAGS="%{rpmcxxflags} -std=c++11"
 %{__make} -j1 \
+	XAPPLOADDIR=%{_appdefsdir}
+
+%{__make} -j1 -C util \
 	XAPPLOADDIR=%{_appdefsdir}
 
 %install
@@ -107,7 +104,7 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
 
 # API not exported, library requires symbols from executable
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/librw.*
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libxpaintrw.*
 
 %clean
 rm -rf $RPM_BUILD_ROOT

@@ -1,16 +1,11 @@
---- xpaint-2.9.10/util/Makefile.orig	2012-02-05 15:14:24.000000000 +0100
-+++ xpaint-2.9.10/util/Makefile	2014-07-22 17:02:25.404157758 +0200
-@@ -1,10 +1,10 @@
--GCC = gcc
--CPP = g++ -fpermissive
-+GCC = @CC@ @CFLAGS@ @CPPFLAGS@
-+CPP = @CXX@ @CXXFLAGS@ @CPPFLAGS@ -fpermissive
- 
- all: pdfconcat ppmtops pgf2pnm
+--- xpaint-3.1.4/util/Makefile.orig	2020-08-09 19:20:37.000000000 +0200
++++ xpaint-3.1.4/util/Makefile	2025-09-27 01:19:59.253326383 +0200
+@@ -10,7 +10,7 @@
+ endif
  
  pdfconcat:
--	$(GCC) -O3 -s -DNDEBUG=1 -DNO_CONFIG=1 -ansi -pedantic -Wunused -Wall -W -Wstrict-prototypes -Wtraditional -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wmissing-prototypes -Wmissing-declarations pdfconcat.c -o pdfconcat
-+	$(GCC) -DNDEBUG=1 -DNO_CONFIG=1 -ansi -pedantic -Wunused -Wall -W -Wstrict-prototypes -Wtraditional -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wmissing-prototypes -Wmissing-declarations pdfconcat.c -o pdfconcat
+-	$(CC) $(CFLAGS) -O3 -s -DNDEBUG=1 -DNO_CONFIG=1 -ansi -pedantic -Wunused -Wall -W -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wmissing-prototypes -Wmissing-declarations pdfconcat.c -o pdfconcat
++	$(CC) $(CFLAGS) -DNDEBUG=1 -DNO_CONFIG=1 -ansi -pedantic -Wunused -Wall -W -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wmissing-prototypes -Wmissing-declarations pdfconcat.c -o pdfconcat
  
  ppmtops:
- 	$(GCC) ppmtops.c -o ppmtops
+ 	$(CC) $(CFLAGS) ppmtops.c -o ppmtops
