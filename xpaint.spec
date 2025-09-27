@@ -7,7 +7,7 @@ Summary(pt_BR.UTF-8):	Programa de desenho para X
 Summary(tr.UTF-8):	X altında boyama programı
 Name:		xpaint
 Version:	3.1.4
-Release:	0.1
+Release:	1
 License:	MIT
 Group:		X11/Applications/Graphics
 Source0:	http://downloads.sourceforge.net/sf-xpaint/%{name}-%{version}.tar.bz2
@@ -22,9 +22,9 @@ BuildRequires:	libjpeg-devel
 BuildRequires:	libpgf-devel
 BuildRequires:	libpng-devel >= 2:1.4.0
 BuildRequires:	libtiff-devel
+BuildRequires:	libxaw3dxft-devel >= 1.6.4
 BuildRequires:	netpbm-devel
 BuildRequires:	openjpeg-devel
-BuildRequires:	libxaw3dxft-devel >= 1.6.4
 BuildRequires:	xorg-lib-libXaw-devel
 BuildRequires:	xorg-lib-libXft-devel
 BuildRequires:	xorg-lib-libXpm-devel >= 3.4c
@@ -100,8 +100,8 @@ install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}}
 	DESTDIR=$RPM_BUILD_ROOT \
 	XAPPLOADDIR=%{_appdefsdir}
 
-install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
-install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
+cp -p %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
+cp -p %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
 
 # API not exported, library requires symbols from executable
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/libxpaintrw.*
@@ -117,6 +117,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/pdfconcat
 %attr(755,root,root) %{_bindir}/pgf2pnm
 %attr(755,root,root) %{_bindir}/ppmtops
+%attr(755,root,root) %{_bindir}/vxp2dkw
+%attr(755,root,root) %{_bindir}/vxp2ps
+%attr(755,root,root) %{_bindir}/vxp2tex
 %{_appdefsdir}/XPaint
 %lang(es) %{_appdefsdir}/XPaint_es
 %lang(fr) %{_appdefsdir}/XPaint_fr
@@ -126,12 +129,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/xpaint/include
 %dir %{_datadir}/xpaint/bin
 %{_datadir}/xpaint/bin/xpaint_ocr
-%dir %{_datadir}/xpaint/bitmaps
-%{_datadir}/xpaint/bitmaps/brushbox.cfg
-%dir %{_datadir}/xpaint/bitmaps/brushes
-%{_datadir}/xpaint/bitmaps/brushes/*.xpm
-%dir %{_datadir}/xpaint/bitmaps/elec
-%{_datadir}/xpaint/bitmaps/elec/*.xpm
+%{_datadir}/xpaint/bitmaps
 %dir %{_datadir}/xpaint/help
 %{_datadir}/xpaint/help/Help
 %lang(es) %{_datadir}/xpaint/help/Help_es
@@ -145,3 +143,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/pdfconcat.1*
 %{_desktopdir}/xpaint.desktop
 %{_pixmapsdir}/xpaint.png
+%{_datadir}/X11/app-defaults/XPaint.big
+%{_datadir}/X11/app-defaults/XPaint.medium
+%{_datadir}/X11/app-defaults/XPaint.small
+%{_iconsdir}/hicolor/scalable/apps/xpaint.svg
